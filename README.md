@@ -55,9 +55,21 @@ Clear separation between:
 git clone https://github.com/ahmedxzarai/AI-VaultGuard.git
 cd AI-VaultGuard
 pip install -r requirements.txt
+```
+
+📂 Preparing the Training Data
+
+The dataset is too large to host on GitHub. To set up the AI model, follow these steps:
+Visit the Kaggle dataset page: Malicious URLs Dataset: [https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset]
+Click Download and extract the zip file.
+Rename the extracted CSV file to urldata.csv and place it in the project directory.
+Train the AI model by running:
+
+```bash
 python train_sentinel.py
 python main.py
 ```
+After training, the AI Sentinel will be ready for real-time phishing detection in the vault.
 
 🛠 Tech Stack
 
@@ -79,6 +91,8 @@ Python • scikit-learn • cryptography • SQLite3 • Feature Engineering •
 • GUI (Tkinter / PyQt / Web)
 • Browser extension integration
 • Unit and integration tests
+
+
 
 
 📜 License \& Copyright
