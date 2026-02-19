@@ -1,103 +1,106 @@
+<div align="center">
+  <h1>🛡️ AI-VaultGuard</h1>
+  <p><b>Machine Learning–Enhanced Password Manager | Local-First AES-256 Security</b></p>
 
-🛡️ AI-VaultGuard
-Developed by AHMED ZARAI | 2026
+  ![Python](https://img.shields.io/badge/python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+  ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
+  ![Security](https://img.shields.io/badge/Encryption-AES--256-red?style=for-the-badge)
+  ![Architecture](https://img.shields.io/badge/Logic-Local--First-9cf?style=for-the-badge)
 
-Machine Learning–Enhanced Password Manager (Local-First, AES-256 Secured)
+  <p><i>Engineering AI-driven security systems that anticipate threats, not just react to them.</i></p>
+</div>
 
-A security-focused password manager that integrates machine learning–based phishing detection with industry-standard encryption, built using a local-first architecture.
+---
 
-Demonstrates applied ML, cryptographic implementation, and secure software design in Python.
-Engineering AI-driven security systems that anticipate threats, not just react to them.
+### 🧠 Sentinel AI Model Details
+The system utilizes an integrated intelligence layer designed to detect phishing attempts before credentials are even entered.
 
-⚡ Core Capabilities
+* *Algorithm:* Random Forest Classifier (via Scikit-Learn).
+* *Feature Engineering:* Custom extraction of URL metadata including:
+    * *Shannon Entropy:* Quantifying the randomness of the domain string to identify algorithmically generated domains.
+    * *Lexical Analysis:* Identifying malicious keyword patterns and structural anomalies.
+    * *Tld/Path Ratios:* Analyzing domain hierarchy for redirection tactics.
+* *Architecture:* Separation of concerns between the training pipeline (train_sentinel.py) and high-speed production inference (sentinel.py).
+* *Performance:* Serialized model for near-instant validation during runtime.
 
-• Phishing Detection Engine
-Random Forest classifier trained on engineered URL features (structure, entropy, keyword patterns) for real-time risk assessment.
-• AES-256 Encrypted Vault
-Credentials encrypted using Fernet (AES-256) derived from a Master Password.
-No plaintext storage. No cloud dependency.
-• Strength Meter (Real-Time Password Analysis)
-Entropy-aware complexity scoring before vault insertion.
-• Local Secure Storage
-SQLite3-backed encrypted database (vault.db).
+---
 
-🏗 Architecture
+### 🔐 Security Highlights
+AI-VaultGuard is built on a "Trust-No-One" local-first architecture.
 
-URL Input ──► Feature Engineering ──► Random Forest ──► Risk Score
-Password ───► Strength Analysis ────► AES-256 Encryption ─► SQLite Vault
+| Security Layer | Implementation Detail |
+| :--- | :--- |
+| *Master Key Derivation* | PBKDF2 with 200,000 iterations + Random Persistent Salt |
+| *Data Encryption* | Fernet (Authenticated AES-256 in CBC mode) |
+| *Vault Storage* | SQLite3 with strict Parameterized Queries (SQLi Defense) |
+| *Authentication* | Master-password verification token (Safe fail-fast login) |
+| *Zero-Cloud Policy* | 100% Offline execution; no plaintext data ever touches the disk |
+| *Strength Analysis* | Real-time entropy-based complexity scoring for new entries |
 
-Clear separation between:
+---
 
-• Training pipeline (train_sentinel.py)
-• Inference engine (sentinel.py)
-• Application layer (main.py)
+### 📦 Project Structure
+```text
+AI-VaultGuard/
+├── train_sentinel.py      # ML Model Training & Feature Engineering
+├── sentinel.py            # Real-time AI Inference Engine
+├── main.py                # Main Application Entry Point
+├── requirements.txt       # Environment Dependencies
+└── vault.db               # AES-256 Encrypted SQLite Vault
+```
+---
 
-🧠 Machine Learning
+### 🖥 Installation & Initialization
 
-• Algorithm: Random Forest (scikit-learn)
-• Custom URL feature extraction
-• Shannon entropy analysis
-• Structural + lexical phishing indicators
-• Serialized model for production inference
-
-🔐 Security Highlights
-
-• Random persistent salt + PBKDF2 (200,000 iterations) for master key derivation
-• Master-password verification token (fail-fast login)
-• AES-256 encryption (Fernet) for all secrets
-• Parameterized SQL queries to prevent injection
-• Local-only storage (no cloud dependency)
-• Zero plaintext credentials
-
-## 🚀 Run Locally
+<details>
+<summary><b>1. Environment Setup (Click to Expand)</b></summary>
 
 ```bash
 git clone https://github.com/ahmedxzarai/AI-VaultGuard.git
 cd AI-VaultGuard
 pip install -r requirements.txt
 ```
+</details>
+<details>
+<summary><b>2. 📂 AI Sentinel Training (Required)</b></summary>
 
-📂 Preparing the Training Data
+The dataset is hosted externally due to size constraints. Follow this protocol:
 
-The dataset is too large to host on GitHub. To set up the AI model, follow these steps:
-Visit the Kaggle dataset page: Malicious URLs Dataset: [https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset]
-Click Download and extract the zip file.
-Rename the extracted CSV file to urldata.csv and place it in the project directory.
-Train the AI model by running:
-
+  1. Download Dataset: Obtain the [Malicious URLs Dataset](https://www.kaggle.com/datasets/sid321axn/malicious-urls-dataset) from Kaggle.
+  2. Dataset Placement: Extract and place the CSV in the root directory. Rename it to urldata.csv.
+  3. Execute Training: Run the training pipeline to generate the serialized model:
 ```bash
 python train_sentinel.py
+```
+</details>
+<details open>
+<summary><b>3. Run Application</b></summary>
+
+```bash
 python main.py
 ```
-After training, the AI Sentinel will be ready for real-time phishing detection in the vault.
+</details>
 
-🛠 Tech Stack
+---
 
-Python • scikit-learn • cryptography • SQLite3 • Feature Engineering • Cybersecurity ML
+### 🎯 Engineering Value
+* **Applied ML:** Real-world application of Random Forest in a cybersecurity context.
+* **Modular Design:** Separation of concerns between ML training, inference, and UI.
+* **Cryptographic Rigor:** Implementation of industry-standard security protocols.
 
-🎯 Engineering Value
+---
 
-• Applied machine learning in cybersecurity context
-• Secure cryptographic implementation
-• Modular and extensible design
-• Clear separation of ML training vs inference
-• Production-minded local-first architecture
+### 🚀 Future Roadmap
+* [ ] Upgrade to Argon2id for password hashing.
+* [ ] Implement memory-wiping for decrypted secrets.
+* [ ] Develop a PyQt6 Modern Dashboard UI.
 
-🎯 Future Improvements
+---
 
-• Argon2 or scrypt key derivation
-• Memory wipe for decrypted passwords
-• Auto-lock / session timeout
-• GUI (Tkinter / PyQt / Web)
-• Browser extension integration
-• Unit and integration tests
+### 👤 Author
+**AHMED ZARAI**<br>
+*AI Systems & Biometric Intelligence Developer*<br><br><br>
 
-
-
-
-📜 License \& Copyright
-Copyright © 2026 AHMED ZARAI. Distributed under the MIT License. See LICENSE for more information.
-
-
-
-
+<div align="center">
+<p>Copyright © 2026 AHMED ZARAI. Distributed under the MIT License.</p>
+</div>
